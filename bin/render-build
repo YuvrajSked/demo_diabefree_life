@@ -11,7 +11,8 @@ bundle install --jobs 4
 echo "Building Next.js frontend..."
 cd frontend
 yarn install
-# Use standard build (without Turbopack)
+# Disable Turbopack and use standard build
+export TURBOPACK=0
 yarn build
 cd ..
 
