@@ -68,7 +68,7 @@ group :test do
 end
 gem "devise", "~> 4.9.4"
 
-gem "activeadmin", "= 4.0.0beta15"
+gem "activeadmin", "4.0.0.beta16"
 
 gem "tailwindcss-ruby", "~> 3.4.17"
 
