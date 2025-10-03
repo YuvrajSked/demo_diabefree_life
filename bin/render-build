@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Exit on error
+set -o errexit
+
+# Install Ruby dependencies
+bundle config path 'vendor/bundle'
+bundle install --jobs 4
+
+# Install and build Next.js frontend
+echo "Building Next.js frontend..."
+cd frontend
+yarn install
+yarn build
+cd ..
+
+# Precompile Rails assets
+echo "Precompiling Rails assets..."
+bundle exec rails assets:precompile
+
+# Run database migrations
+echo "Running database migrations..."
+bundle exec rails db:migrate
