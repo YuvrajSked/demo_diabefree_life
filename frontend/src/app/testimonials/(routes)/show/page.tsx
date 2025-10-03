@@ -1,29 +1,39 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCalendarAlt, faWeight, faClock } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { testimonialService } from '../../../../api';
 
+interface Testimonial {
+  id: number;
+  name: string;
+  age: number;
+  location: string;
+  content: string;
+  hba1c_before: number;
+  hba1c_after: number;
+  weight_lost: number;
+  program_duration: number;
+  created_at: string;
+}
+
 export default function TestimonialShowPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const [testimonial, setTestimonial] = useState<any>(null);
+  const [testimonial, setTestimonial] = useState<Testimonial | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (id) {
-      loadTestimonial();
-    } else {
+  const loadTestimonial = useCallback(async () => {
+    if (!id) {
       setError('No testimonial ID provided');
       setLoading(false);
+      return;
     }
-  }, [id]);
-
-  const loadTestimonial = async () => {
+    
     try {
       const data = await testimonialService.getTestimonial(Number(id));
       if (!data) {
@@ -37,7 +47,14 @@ export default function TestimonialShowPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      loadTestimonial();
+    }
+  }, [id, loadTestimonial]);
+
 
   if (loading) {
     return (
@@ -127,7 +144,7 @@ export default function TestimonialShowPage() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                 <div>
                   <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                    {testimonial.name}'s Success Story
+                    {testimonial.name}&apos;s Success Story
                   </h1>
                   <p className="text-gray-600">
                     {testimonial.age} years, {testimonial.location}
@@ -153,7 +170,7 @@ export default function TestimonialShowPage() {
 
               <div className="prose max-w-none text-gray-700 mb-8">
                 <p className="text-lg leading-relaxed">
-                  "{testimonial.content}"
+                  &ldquo;{testimonial.content}&rdquo;
                 </p>
               </div>
 

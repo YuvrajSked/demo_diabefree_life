@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold mb-4">DiabeFree Life</h3>
             <p className="text-gray-300 mb-4">
-              India's leading diabetes reversal program helping thousands of people 
+              India&apos;s leading diabetes reversal program helping thousands of people 
               achieve normal blood sugar levels naturally through proven lifestyle interventions.
             </p>
             <div className="flex space-x-4">

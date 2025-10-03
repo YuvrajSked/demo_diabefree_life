@@ -1,9 +1,26 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  // Standard Next.js configuration
+type TurbopackConfig = {
+  experimental: {
+    turbopack?: {
+      root?: string;
+    };
+  };
+};
+
+const nextConfig: NextConfig & TurbopackConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  experimental: {
+    turbopack: {
+      root: __dirname
+    }
+  },
+  cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename]
+    }
+  }
 };
 
 export default nextConfig;

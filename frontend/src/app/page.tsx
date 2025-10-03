@@ -1,27 +1,20 @@
-// import Link from 'next/link'; 
 import { testimonialService, programService } from '@/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { HomeSections, ServiceSection, FaqSectionClient, MeetAnoop, ProgramSection, SuccessStorySection } from '@/components/';
 import {
-  faStar,
-  // faCheck,
   faUsers,
-  faPills,
   faHeart,
   faCalendarAlt,
   faStethoscope,
   faAppleAlt,
-  faBrain,
   faGraduationCap,
   faVideo,
   faChevronRight,
   faPlay,
   faDownload,
   faNewspaper,
-  faQuestionCircle,
   faAward,
   faPhoneAlt,
-  faEnvelope,
   faTrophy,
   faCamera,
   faImages,
@@ -434,7 +427,7 @@ export default async function Home() {
             </div>
             <div className="relative group cursor-pointer overflow-hidden rounded-lg">
               <div className="h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center">
-                <FontAwesomeIcon icon={faBrain} className="text-white w-8 h-8" />
+                <FontAwesomeIcon icon={faGraduationCap} className="text-white w-8 h-8" />
               </div>
               <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
                 <FontAwesomeIcon icon={faPlay} className="text-white w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity" />

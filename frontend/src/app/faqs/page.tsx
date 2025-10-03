@@ -67,7 +67,7 @@ export default function FaqsPage() {
               <span className="w-4 h-4 bg-pink-400 rounded-full animate-bounce delay-450"></span>
             </div>
             <h2 className="text-3xl font-bold text-gray-800 mb-2">Loading FAQs</h2>
-            <p className="text-gray-600">We're gathering the most common questions for you...</p>
+            <p className="text-gray-600">We&apos;re gathering the most common questions for you...</p>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@ export default function FaqsPage() {
               <FontAwesomeIcon icon={faQuestionCircle} className="text-red-500 text-3xl" />
             </div>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Oops! Something went wrong</h2>
-            <p className="text-gray-600 mb-6">We're having trouble loading the FAQs. Please try again later.</p>
+            <p className="text-gray-600 mb-6">We&apos;re having trouble loading the FAQs. Please try again later.</p>
             <button
               onClick={() => window.location.reload()}
               className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
@@ -163,7 +163,7 @@ export default function FaqsPage() {
                 <FontAwesomeIcon icon={faQuestionCircle} className="text-blue-500 text-3xl" />
               </div>
               <h3 className="text-xl font-medium text-gray-800 mb-2">No FAQs Found</h3>
-              <p className="text-gray-600">We couldn't find any frequently asked questions at the moment.</p>
+              <p className="text-gray-600">We couldn&apos;t find any frequently asked questions at the moment.</p>
             </div>
           )}
         </div>
@@ -171,8 +171,8 @@ export default function FaqsPage() {
         <div className="mt-16 bg-white rounded-xl p-8 shadow-sm border border-gray-100 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Still have questions?</h2>
           <p className="text-gray-600 mb-6">
-            If you can't find the answer to your question, feel free to contact our support team. 
-            We're here to help you on your diabetes reversal journey.
+            If you can&apos;t find the answer to your question, feel free to contact our support team. 
+            We&apos;re here to help you on your diabetes reversal journey.
           </p>
           <Link 
             href="/contact" 
