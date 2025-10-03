@@ -16,10 +16,17 @@ export TURBOPACK=0
 yarn build
 cd ..
 
+# Setup database and run migrations
+echo "Setting up database..."
+bin/rails db:create
+bin/rails db:migrate
+
+# Only run seed data if this is a web instance in the Render environment
+if [ "$RENDER" = "true" ] && [ "$RENDER_INSTANCE_TYPE" = "web" ]; then
+  echo "Running database seed..."
+  bin/rails db:seed
+fi
+
 # Precompile Rails assets
 echo "Precompiling Rails assets..."
 NODE_ENV=production bundle exec rails assets:precompile
-
-# Run database migrations
-echo "Running database migrations..."
-bundle exec rails db:migrate
