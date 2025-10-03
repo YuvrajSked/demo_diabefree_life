@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= [@page_title, 'DiabeFree Life Admin'].compact.join(' | ') %></title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <!-- Include Chart.js and Chartkick -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartkick"></script>
+
+    <%= javascript_include_tag 'application' %>
+
+    <%= yield :head %>
+  </head>
+
+  <body class="admin">
+    <%= render 'admin/shared/header' %>
+
+    <div class="wrapper">
+      <%= render 'admin/shared/sidebar' %>
+
+      <div class="content-wrapper">
+        <%= render 'admin/shared/flash_messages' %>
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render 'admin/shared/footer' %>
+
+    <%= yield :javascript %>
+  </body>
+</html>

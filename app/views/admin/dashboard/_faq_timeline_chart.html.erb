@@ -1,0 +1,60 @@
+<% if faqs.any? %>
+  <div id="faq-timeline-chart" style="height: 300px;">
+    <div class="chart-loading">Loading chart...</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Group FAQs by month
+      const faqsByMonth = <%= raw faqs.group_by { |f| f.created_at.beginning_of_month.strftime("%b %Y") }
+        .transform_values(&:count)
+        .sort_by { |month, _| Date.strptime(month, "%b %Y") }
+        .to_h.to_json %>;
+      
+      if (Object.keys(faqsByMonth).length > 0) {
+        new Chartkick.LineChart("faq-timeline-chart", faqsByMonth, {
+          colors: ["#3B82F6"],
+          library: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1
+                },
+                title: {
+                  display: true,
+                  text: 'Number of FAQs'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Month'
+                }
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: 'FAQs Created Over Time'
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    return `FAQs: ${context.parsed.y}`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      } else {
+        document.getElementById('faq-timeline-chart').innerHTML = '<p>No FAQ data available.</p>';
+      }
+    });
+  </script>
+<% else %>
+  <p>No FAQ data available.</p>
+<% end %>

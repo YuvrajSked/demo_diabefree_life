@@ -1,0 +1,4 @@
+web: env RUBY_DEBUG_OPEN=true bin/rails server
+frontend: cd frontend && npm run dev -- --port 3001
+js: yarn build --watch
+css: yarn build:css --watch

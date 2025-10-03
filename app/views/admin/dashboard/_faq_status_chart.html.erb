@@ -1,0 +1,42 @@
+<% if faqs.any? %>
+  <div id="faq-status-chart" style="height: 300px;">
+    <div class="chart-loading">Loading chart...</div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const data = <%= raw faqs.group(:active).count.map { |k, v| [k ? 'Active' : 'Inactive', v] }.to_h.to_json %>;
+      
+      if (Object.keys(data).length > 0) {
+        new Chartkick.PieChart("faq-status-chart", data, {
+          colors: ["#10B981", "#EF4444"],
+          donut: true,
+          library: {
+            title: { 
+              display: true,
+              text: 'FAQ Status Distribution'
+            },
+            legend: {
+              position: 'right'
+            },
+            tooltips: {
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  const dataset = data.datasets[tooltipItem.datasetIndex];
+                  const total = dataset.data.reduce((a, b) => a + b, 0);
+                  const currentValue = dataset.data[tooltipItem.index];
+                  const percentage = Math.round((currentValue / total) * 100);
+                  return `${data.labels[tooltipItem.index]}: ${currentValue} (${percentage}%)`;
+                }
+              }
+            }
+          }
+        });
+      } else {
+        document.getElementById('faq-status-chart').innerHTML = '<p>No FAQ data available.</p>';
+      }
+    });
+  </script>
+<% else %>
+  <p>No FAQ data available.</p>
+<% end %>

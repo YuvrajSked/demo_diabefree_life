@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  start_time: 2025-09-26 12:53:36
+  end_time: 2025-09-26 12:53:36
+  location: MyString
+  max_participants: 1
+  price: 9.99
+  is_online: false
+  zoom_link: MyString
+
+two:
+  title: MyString
+  description: MyText
+  start_time: 2025-09-26 12:53:36
+  end_time: 2025-09-26 12:53:36
+  location: MyString
+  max_participants: 1
+  price: 9.99
+  is_online: false
+  zoom_link: MyString
