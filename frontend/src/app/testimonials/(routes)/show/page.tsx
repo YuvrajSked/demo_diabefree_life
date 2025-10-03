@@ -7,23 +7,22 @@ import { faArrowLeft, faCalendarAlt, faWeight, faClock } from '@fortawesome/free
 import Link from 'next/link';
 import { testimonialService } from '../../../../api';
 
-interface Testimonial {
-  id: number;
+interface TestimonialType {
   name: string;
   age: number;
   location: string;
-  content: string;
   hba1c_before: number;
   hba1c_after: number;
   weight_lost: number;
   program_duration: number;
+  content: string;
   created_at: string;
 }
 
 export default function TestimonialShowPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
-  const [testimonial, setTestimonial] = useState<Testimonial | null>(null);
+  const [testimonial, setTestimonial] = useState<TestimonialType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -38,23 +37,21 @@ export default function TestimonialShowPage() {
       const data = await testimonialService.getTestimonial(Number(id));
       if (!data) {
         setError('Testimonial not found');
+        setLoading(false);
         return;
       }
       setTestimonial(data);
-    } catch (error) {
-      console.error('Error loading testimonial:', error);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error loading testimonial:', err);
       setError('Failed to load testimonial');
-    } finally {
       setLoading(false);
     }
   }, [id]);
 
   useEffect(() => {
-    if (id) {
-      loadTestimonial();
-    }
-  }, [id, loadTestimonial]);
-
+    loadTestimonial();
+  }, [loadTestimonial]);
 
   if (loading) {
     return (
@@ -95,6 +92,7 @@ export default function TestimonialShowPage() {
           </Link>
         </div>
       </div>
+
       {/* Video Player */}
       <section className="py-8 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -106,7 +104,7 @@ export default function TestimonialShowPage() {
                 src="https://www.youtube.com/embed/UU09eguVzFE?autoplay=1&rel=0&modestbranding=1"
                 title={`${testimonial?.name || 'Patient'}'s Success Story`}
                 frameBorder="0"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen; controls"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 style={{
                   position: 'absolute',
@@ -120,18 +118,6 @@ export default function TestimonialShowPage() {
                 }}
               />
             </div>
-            
-            {/* Video Info Overlay */}
-            {/* <div className="absolute bottom-0 left-0 right-0 p-6 pt-16 bg-gradient-to-t from-black/80 to-transparent">
-              <div className="text-white font-medium text-lg">
-                {testimonial?.name}'s Transformation Journey
-              </div>
-              <div className="text-white/80 text-sm mt-1">
-                <span>Click to play</span>
-                <span className="mx-2">•</span>
-                <span>2:45</span>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

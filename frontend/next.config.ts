@@ -1,26 +1,11 @@
 import type { NextConfig } from "next";
 
-type TurbopackConfig = {
-  experimental: {
-    turbopack?: {
-      root?: string;
-    };
-  };
-};
-
-const nextConfig: NextConfig & TurbopackConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
-    turbopack: {
-      root: __dirname
-    }
+    // Add any experimental features here if needed
   },
-  cache: {
-    type: 'filesystem',
-    buildDependencies: {
-      config: [__filename]
-    }
-  }
+  // Remove unsupported cache configuration
 };
 
 export default nextConfig;
