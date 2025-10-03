@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: diabefree-life
+    runtime: ruby
+    buildCommand: "./bin/render-build"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: NODE_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: diabefree-life-db
+          property: connectionString
+    plan: free
+
+databases:
+  - name: diabefree-life-db
+    databaseName: diabefree_life_production
+    user: diabefree_life
+    plan: free
