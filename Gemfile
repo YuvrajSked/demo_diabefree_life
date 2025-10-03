@@ -70,7 +70,7 @@ gem "devise", "~> 4.9.4"
 
 gem "activeadmin", "= 4.0.0beta15"
 
-gem "tailwindcss-ruby", "~> 3.4.17"
+gem "tailwindcss-ruby", "~> 4.1.13"
 
 gem "importmap-rails"
 
