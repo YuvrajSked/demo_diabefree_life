@@ -11,8 +11,8 @@ bundle install --jobs 4
 echo "Building Next.js frontend..."
 cd frontend
 yarn install
-# Disable Turbopack by using the standard Next.js build
-yarn build --no-turbo
+# Use standard build (without Turbopack)
+yarn build
 cd ..
 
 # Precompile Rails assets
