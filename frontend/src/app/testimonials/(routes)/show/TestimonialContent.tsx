@@ -8,15 +8,19 @@ import Link from 'next/link';
 import { testimonialService } from '../../../../api';
 
 interface TestimonialType {
+  id: number;
   name: string;
   age: number;
   location: string;
   hba1c_before: number;
   hba1c_after: number;
   weight_lost: number;
-  program_duration: number;
   content: string;
+  program_duration: number; // Changed from string to number to match API
   created_at: string;
+  image_url?: string;
+  // Add other fields that might be returned by the API
+  [key: string]: any; // This allows for additional properties
 }
 
 export default function TestimonialContent() {
@@ -25,7 +29,6 @@ export default function TestimonialContent() {
   const [testimonial, setTestimonial] = useState<TestimonialType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
   const loadTestimonial = useCallback(async () => {
     if (!id) {
       setError('No testimonial ID provided');
