@@ -114,7 +114,7 @@ GEM
       activerecord (>= 4.2)
       activesupport (>= 4.2)
     crass (1.0.6)
-    cssbundling-rails (1.4.1)
+    cssbundling-rails (1.4.3)
       railties (>= 6.0.0)
     csv (3.3.5)
     date (3.4.1)
@@ -442,7 +442,7 @@ DEPENDENCIES
   brakeman
   capybara
   counter_culture (~> 3.3)
-  cssbundling-rails (= 1.4.1)
+  cssbundling-rails (= 1.4.3)
   debug
   devise (~> 4.9.4)
   importmap-rails
